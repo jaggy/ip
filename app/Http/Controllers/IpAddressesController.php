@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\IpAddressResource;
 use App\Models\IpAddress;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -12,6 +13,11 @@ class IpAddressesController
 {
     public function index()
     {
+        return inertia('ip-addresses/index', [
+            'ipAddresses' => IpAddressResource::collection(
+                IpAddress::latest()->get()
+            ),
+        ]);
     }
 
     public function create()
