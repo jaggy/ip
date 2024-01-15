@@ -66,6 +66,6 @@ class IpAddressesController
 
         $ipAddress->update($attributes);
 
-        return redirect()->route('ip-addresses.index');
+        return redirect()->route('ip-addresses.show', $ipAddress);
     }
 }

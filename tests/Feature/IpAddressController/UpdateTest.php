@@ -20,7 +20,9 @@ beforeEach(function () {
 it('updates the ip address label', function () {
     updateIpAddress($this->address, [
         'label' => 'New Label',
-    ])->assertRedirect();
+    ])->assertRedirect(
+        route('ip-addresses.show', $this->address)
+    );
 
     expect(IpAddress::first())
         ->label->toBe('New Label');
