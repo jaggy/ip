@@ -26,6 +26,7 @@
     },
     "dependencies": {
         "@inertiajs/vue3": "^1.0.14",
+        "@vueuse/core": "^10.7.2",
         "autoprefixer": "^10.4.16",
         "axios": "^1.6.4",
         "class-variance-authority": "^0.7.0",

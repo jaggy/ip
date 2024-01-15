@@ -1,11 +1,17 @@
 <script setup lang="ts">
-type Props = {}
+import { contentContainerVariants } from "."
+import { cn } from "@/utils"
+
+type Props = {
+    padding?: NonNullable<Parameters<typeof contentContainerVariants>[0]>["padding"]
+    wrap?: NonNullable<Parameters<typeof contentContainerVariants>[0]>["wrap"]
+}
 
 defineProps<Props>()
 </script>
 
 <template>
-    <div class="content-container [ px-8 mx-auto max-w-5xl ]">
+    <div :class="cn(contentContainerVariants({ wrap, padding }))">
         <slot></slot>
     </div>
 </template>
