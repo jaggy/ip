@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Feature\IpAddressController;
 
 use App\Models\IpAddress;
+use Illuminate\Support\Str;
 use Tests\Fixtures\ActingAsRandomUser;
 
 use function Pest\Laravel\assertDatabaseCount;
@@ -48,8 +49,10 @@ it('validates the data', function ($attribute, $value, $message) {
         $attribute => $message,
     ]);
 })->with([
-    'ip address is required' => ['ip_address', null, 'The ip address field is required.'],
-    'ip address is valid' => ['ip_address', 'not an ip address', 'The ip address field must be a valid IP address.'],
+    'label is required'                      => ['label', null, 'The label field is required.'],
+    'label must be less than 255 characters' => ['label', Str::random(300), 'The label field must not be greater than 255 characters.'],
+    'ip address is required'                 => ['ip_address', null, 'The ip address field is required.'],
+    'ip address is valid'                    => ['ip_address', 'not an ip address', 'The ip address field must be a valid IP address.'],
 ]);
 
 function createIpAddress(array $attributes = [])

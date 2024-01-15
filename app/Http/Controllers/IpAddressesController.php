@@ -25,7 +25,7 @@ class IpAddressesController
     public function store(Request $request)
     {
         $attributes = $request->validate([
-            'label'      => '',
+            'label'      => ['required', 'max:255'],
             'ip_address' => ['required', 'ip'],
         ]);
 
