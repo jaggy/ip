@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Feature\IpAddressController;
 
 use App\Models\IpAddress;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Tests\Fixtures\ActingAsRandomUser;
 
@@ -68,6 +69,14 @@ it("doesn't allow duplicate ip addresses", function () {
     ])->assertInvalid([
         'ip_address' => 'The ip address has already been taken.',
     ]);
+});
+
+it("doesn't show the page to guests", function () {
+    Auth::logout();
+
+    createIpAddress()->assertRedirect(
+        route('signin.create'),
+    );
 });
 
 function createIpAddress(array $attributes = [])
