@@ -16,7 +16,7 @@ uses(ActingAsRandomUser::class);
 it('creates an ip v4 address', function () {
     assertDatabaseCount('ip_addresses', 0);
 
-    createIpAddress([
+    updateIpAddress([
         'label'      => 'Cloudflare DNS Resolver',
         'ip_address' => '1.1.1.1',
     ])->assertRedirect();
@@ -31,7 +31,7 @@ it('creates an ip v4 address', function () {
 it('creates an ip v6 address', function () {
     assertDatabaseCount('ip_addresses', 0);
 
-    createIpAddress([
+    updateIpAddress([
         'label'      => 'IBM IPv6 Example',
         'ip_address' => '2001:db8:3333:4444:5555:6666:7777:8888',
     ]);
@@ -44,7 +44,7 @@ it('creates an ip v6 address', function () {
 });
 
 it('validates the data', function ($attribute, $value, $message) {
-    createIpAddress([
+    updateIpAddress([
         $attribute => $value,
     ])->assertInvalid([
         $attribute => $message,
@@ -63,7 +63,7 @@ it("doesn't allow duplicate ip addresses", function () {
 
     assertDatabaseCount('ip_addresses', 1);
 
-    createIpAddress([
+    updateIpAddress([
         'label'      => 'Some Label',
         'ip_address' => '1.1.1.1',
     ])->assertInvalid([
@@ -74,7 +74,7 @@ it("doesn't allow duplicate ip addresses", function () {
 it("doesn't show the page to guests", function () {
     Auth::logout();
 
-    createIpAddress()->assertRedirect(
+    updateIpAddress()->assertRedirect(
         route('signin.create'),
     );
 });

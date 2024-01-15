@@ -2,14 +2,11 @@
 import { Button } from "@/components/ui/button"
 import { ContentContainer } from "@/components/ui/content-container"
 import { Heading } from "@/components/ui/heading"
-import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import { inertia } from "@/utils"
 
 type Props = {
-    ipAddresses: {
-        id: number
-        label: string
-        ip_address: string
-    }[]
+    ipAddresses: App.IpAddress[]
 }
 
 defineProps<Props>()
@@ -34,8 +31,8 @@ defineProps<Props>()
                         <TableCell>{{ ipAddress.ip_address }}</TableCell>
                         <TableCell>
                             <div class="[ flex gap-4 ]">
-                                <Button size="sm" look="secondary" as="a" href="ipAddress.links.show_path">View</Button>
-                                <Button size="sm" look="secondary" as="a" href="ipAddress.links.update_path">Edit</Button>
+                                <Button @click="inertia" size="sm" look="secondary" as="a" :href="ipAddress.links.show_path">View</Button>
+                                <Button @click="inertia" size="sm" look="secondary" as="a" :href="ipAddress.links.edit_path">Edit</Button>
                             </div>
                         </TableCell>
                     </TableRow>

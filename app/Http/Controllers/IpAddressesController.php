@@ -40,4 +40,25 @@ class IpAddressesController
 
         return redirect()->back();
     }
+
+    public function edit(IpAddress $ipAddress)
+    {
+        return inertia('ip-addresses/edit', [
+            'ipAddress' => IpAddressResource::make($ipAddress),
+            'links' => [
+                'update_path' => route('ip-addresses.update', $ipAddress),
+            ],
+        ]);
+    }
+
+    public function update(Request $request, IpAddress $ipAddress)
+    {
+        $attributes = $request->validate([
+            'label' => ['required', 'max:255'],
+        ]);
+
+        $ipAddress->update($attributes);
+
+        return redirect()->route('ip-addresses.index');
+    }
 }

@@ -17,8 +17,8 @@ class IpAddressResource extends JsonResource
             'label'      => $this->label,
             'ip_address' => $this->ip_address,
             'links'      => [
-                'show_path'   => route('ip-addresses.show', $this),
-                'update_path' => route('ip-addresses.show', $this),
+                'show_path' => route('ip-addresses.show', $this),
+                'edit_path' => route('ip-addresses.edit', $this),
             ],
         ];
     }
