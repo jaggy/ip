@@ -3,17 +3,16 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\LandingPageController;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+if (app()->environment('local')) {
+    Route::get('dev/signin/{user}', function (User $user) {
+        Auth::login($user);
+
+        return redirect()->to('/');
+    });
+}
 
 Route::get('/', LandingPageController::class);
