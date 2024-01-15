@@ -20,6 +20,13 @@ class IpAddressesController
         ]);
     }
 
+    public function show(IpAddress $ipAddress)
+    {
+        return inertia('ip-addresses/show', [
+            'ipAddress' => IpAddressResource::make($ipAddress),
+        ]);
+    }
+
     public function create()
     {
         return inertia('ip-addresses/create', [
