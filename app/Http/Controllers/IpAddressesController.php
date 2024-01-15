@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Models\IpAddress;
+use Illuminate\Http\Request;
+
 class IpAddressesController
 {
     public function index()
@@ -17,5 +20,15 @@ class IpAddressesController
                 'store_path' => route('ip-addresses.store'),
             ],
         ]);
+    }
+
+    public function store(Request $request)
+    {
+        $attributes = $request->validate([
+            'label'      => '',
+            'ip_address' => '',
+        ]);
+
+        IpAddress::create($attributes);
     }
 }
