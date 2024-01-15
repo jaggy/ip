@@ -44,7 +44,7 @@ function submit() {
                         <p>This supports both IPv4 and IPv6.</p>
                     </template>
 
-                    <Input id="ip-address" name="ip_address" v-model="form.ip_address" placeholder="192.168.0.1, ::1" />
+                    <Input id="ip-address" name="ip_address" v-model="form.ip_address" placeholder="192.168.0.1" />
                 </Field>
 
                 <div class="[ flex justify-end ]">
