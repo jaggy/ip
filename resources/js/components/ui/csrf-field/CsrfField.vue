@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { onMounted } from "vue"
-
 type Props = {}
 
 defineProps<Props>()

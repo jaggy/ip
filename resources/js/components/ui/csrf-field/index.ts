@@ -1,1 +1,1 @@
-export { default as CsrfField } from "./CsrfField"
+export { default as CsrfField } from "./CsrfField.vue"
