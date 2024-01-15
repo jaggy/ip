@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\IpAddressesController;
 use App\Http\Controllers\LandingPageController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -16,3 +17,4 @@ if (app()->environment('local')) {
 }
 
 Route::get('/', LandingPageController::class);
+Route::resource('ip-addresses', IpAddressesController::class)->except('destroy');
