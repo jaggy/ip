@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Models\IpAddress;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class IpAddressesController
 {
@@ -26,9 +27,11 @@ class IpAddressesController
     {
         $attributes = $request->validate([
             'label'      => ['required', 'max:255'],
-            'ip_address' => ['required', 'ip'],
+            'ip_address' => ['required', 'ip', Rule::unique('ip_addresses')],
         ]);
 
         IpAddress::create($attributes);
+
+        return redirect()->back();
     }
 }

@@ -18,7 +18,7 @@ it('creates an ip v4 address', function () {
     createIpAddress([
         'label'      => 'Cloudflare DNS Resolver',
         'ip_address' => '1.1.1.1',
-    ]);
+    ])->assertRedirect();
 
     assertDatabaseCount('ip_addresses', 1);
 
@@ -55,13 +55,28 @@ it('validates the data', function ($attribute, $value, $message) {
     'ip address is valid'                    => ['ip_address', 'not an ip address', 'The ip address field must be a valid IP address.'],
 ]);
 
+it("doesn't allow duplicate ip addresses", function () {
+    IpAddress::factory()->create([
+        'ip_address' => '1.1.1.1',
+    ]);
+
+    assertDatabaseCount('ip_addresses', 1);
+
+    createIpAddress([
+        'label'      => 'Some Label',
+        'ip_address' => '1.1.1.1',
+    ])->assertInvalid([
+        'ip_address' => 'The ip address has already been taken.',
+    ]);
+});
+
 function createIpAddress(array $attributes = [])
 {
     return test()->post(
         route('ip-addresses.store'),
         [
+            'label'      => fake()->words(5, asText: true),
             'ip_address' => fake()->randomElement([fake()->ipv4, fake()->ipv6]),
-            'label'     => fake()->randomElement([fake()->ipv4, fake()->ipv6]),
             ...$attributes,
         ],
     );
