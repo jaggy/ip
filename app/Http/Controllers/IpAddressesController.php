@@ -26,7 +26,7 @@ class IpAddressesController
     {
         $attributes = $request->validate([
             'label'      => '',
-            'ip_address' => '',
+            'ip_address' => ['required', 'ip'],
         ]);
 
         IpAddress::create($attributes);

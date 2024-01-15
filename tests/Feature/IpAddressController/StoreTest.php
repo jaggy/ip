@@ -26,7 +26,7 @@ it('creates an ip v4 address', function () {
         ->ip_address->toBe('1.1.1.1');
 });
 
-it("creates an ip v6 address", function () {
+it('creates an ip v6 address', function () {
     assertDatabaseCount('ip_addresses', 0);
 
     createIpAddress([
@@ -36,11 +36,21 @@ it("creates an ip v6 address", function () {
 
     assertDatabaseCount('ip_addresses', 1);
 
-
     expect(IpAddress::first())
         ->label     ->toBe('IBM IPv6 Example')
         ->ip_address->toBe('2001:db8:3333:4444:5555:6666:7777:8888');
 });
+
+it('validates the data', function ($attribute, $value, $message) {
+    createIpAddress([
+        $attribute => $value,
+    ])->assertInvalid([
+        $attribute => $message,
+    ]);
+})->with([
+    'ip address is required' => ['ip_address', null, 'The ip address field is required.'],
+    'ip address is valid' => ['ip_address', 'not an ip address', 'The ip address field must be a valid IP address.'],
+]);
 
 function createIpAddress(array $attributes = [])
 {
