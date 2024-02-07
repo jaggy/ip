@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Tests\Feature\SigninController;
 
+use App\Jobs\AuditSignin;
 use App\Models\User;
+use Illuminate\Support\Facades\Bus;
 
 use function Pest\Laravel\assertAuthenticatedAs;
 use function Pest\Laravel\assertGuest;
@@ -17,6 +19,8 @@ beforeEach(function () {
 });
 
 it('signs in and redirects to the ip addresses page', function () {
+    Bus::fake(AuditSignin::class);
+
     assertGuest();
 
     signin([
@@ -27,6 +31,10 @@ it('signs in and redirects to the ip addresses page', function () {
     );
 
     assertAuthenticatedAs($this->user);
+
+    Bus::assertDispatched(function (AuditSignin $job) {
+        return inspect($job)->user->is($this->user);
+    });
 });
 
 it('validates an existing email', function () {
