@@ -15,9 +15,12 @@ class AuditResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'user' => UserResource::make($this->whenLoaded('user')),
+
             'id' => $this->id,
             'event' => $this->event,
             'changes' => $this->changes(),
+            'created_at' => TimestampResource::make($this->created_at),
         ];
     }
 

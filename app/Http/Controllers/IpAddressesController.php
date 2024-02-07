@@ -26,7 +26,11 @@ class IpAddressesController
         return inertia('ip-addresses/show', [
             'ipAddress' => IpAddressResource::make($ipAddress),
             'audits' => AuditResource::collection(
-                $ipAddress->audits()->latest()->get(),
+                $ipAddress
+                    ->audits()
+                    ->with('user')
+                    ->oldest()
+                    ->get(),
             ),
         ]);
     }

@@ -16,14 +16,22 @@ defineProps<Props>()
             <Heading>{{ ipAddress.label }}</Heading>
 
             <section class="[ grid gap-4 ]">
+                <h2>Audit Trail</h2>
+
                 <div v-for="audit in audits" :key="audit.id">
                     <template v-if="audit.event === 'created'">
-                        <div>IP Address created</div>
+                        <div class="[ flex items-center gap-2 ]">
+                            <div>Added by {{ audit.user.name }}</div>
+                            <div class="[ text-sm text-muted-foreground ]">{{ audit.created_at.short }}</div>
+                        </div>
                     </template>
 
                     <template v-if="audit.event === 'updated'">
                         <div>
-                            <div>IP Address updated</div>
+                            <div class="[ flex items-center gap-2 ]">
+                                <div>Updated by {{ audit.user.name }}</div>
+                                <div class="[ text-sm text-muted-foreground ]">{{ audit.created_at.short }}</div>
+                            </div>
 
                             <div class="[ ps-4 ]">
                                 <div v-for="([attribute, changes], index) in Object.entries(audit.changes)" :key="index" class="[ flex items-center ]">
