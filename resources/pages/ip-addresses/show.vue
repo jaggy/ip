@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ContentContainer } from "@/components/ui/content-container"
 import { Heading } from "@/components/ui/heading"
+import { Page } from "@/components/ui/page"
 
 type Props = {
     ipAddress: App.IpAddress
@@ -11,7 +12,7 @@ defineProps<Props>()
 </script>
 
 <template>
-    <div class="[ py-12 ]">
+    <Page>
         <ContentContainer>
             <Heading>{{ ipAddress.label }}</Heading>
 
@@ -49,7 +50,7 @@ defineProps<Props>()
                 </div>
             </section>
         </ContentContainer>
-    </div>
+    </Page>
 </template>
 
 <style scoped></style>

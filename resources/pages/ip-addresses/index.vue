@@ -2,20 +2,28 @@
 import { Button } from "@/components/ui/button"
 import { ContentContainer } from "@/components/ui/content-container"
 import { Heading } from "@/components/ui/heading"
+import { Page } from "@/components/ui/page"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { inertia } from "@/utils"
 
 type Props = {
     ipAddresses: App.IpAddress[]
+    links: Links
 }
 
 defineProps<Props>()
 </script>
 
 <template>
-    <div class="[ py-12 ]">
+    <Page>
         <ContentContainer>
-            <Heading>IP Addresses</Heading>
+            <header class="[ flex justify-between items-center ]">
+                <Heading>IP Addresses</Heading>
+
+                <div>
+                    <Button as="a" :href="links.create_path"> Add ip address </Button>
+                </div>
+            </header>
 
             <Table class="[ mt-12 ]">
                 <TableHeader>
@@ -39,7 +47,7 @@ defineProps<Props>()
                 </TableBody>
             </Table>
         </ContentContainer>
-    </div>
+    </Page>
 </template>
 
 <style scoped></style>

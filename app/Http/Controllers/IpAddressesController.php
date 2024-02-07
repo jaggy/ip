@@ -18,6 +18,9 @@ class IpAddressesController
             'ipAddresses' => IpAddressResource::collection(
                 IpAddress::latest()->get()
             ),
+            'links' => [
+                'create_path' => route('ip-addresses.create'),
+            ],
         ]);
     }
 
@@ -51,9 +54,9 @@ class IpAddressesController
             'ip_address' => ['required', 'ip', Rule::unique('ip_addresses')],
         ]);
 
-        IpAddress::create($attributes);
+        $ipAddress = IpAddress::create($attributes);
 
-        return redirect()->back();
+        return redirect()->route('ip-addresses.show', $ipAddress);
     }
 
     public function edit(IpAddress $ipAddress)

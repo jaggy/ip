@@ -6,6 +6,7 @@ import { CsrfField } from "@/components/ui/csrf-field"
 import { Field } from "@/components/ui/field"
 import { Heading } from "@/components/ui/heading"
 import { Input } from "@/components/ui/input"
+import { Page } from "@/components/ui/page"
 
 type Props = {
     links: Links
@@ -28,11 +29,11 @@ function submit() {
 </script>
 
 <template>
-    <div class="[ py-12 ]">
+    <Page>
         <ContentContainer wrap="dialog">
             <Heading> Add a new IP Address </Heading>
 
-            <form :action="links.store_path" method="POST" @submit.prevent="submit" class="[ grid gap-6 ]">
+            <form :action="links.store_path" method="POST" @submit.prevent="submit" class="[ grid gap-6 mt-4 ]">
                 <CsrfField />
 
                 <Field label="Label" id="label" :error="form.errors.label">
@@ -52,7 +53,7 @@ function submit() {
                 </div>
             </form>
         </ContentContainer>
-    </div>
+    </Page>
 </template>
 
 <style scoped></style>
