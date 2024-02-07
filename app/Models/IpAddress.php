@@ -7,8 +7,10 @@ namespace App\Models;
 use App\Models\Concerns\Unguarded;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use OwenIt\Auditing\Auditable;
+use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
-class IpAddress extends Model
+class IpAddress extends Model implements AuditableContract
 {
-    use HasFactory, Unguarded;
+    use Auditable, HasFactory, Unguarded;
 }
