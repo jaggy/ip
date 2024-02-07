@@ -30,37 +30,41 @@ defineProps<Props>()
 
             <div>IP Address: {{ ipAddress.ip_address }}</div>
 
-            <section class="[ grid gap-4 mt-12 ]">
+            <section class="[ mt-12 ]">
                 <h2 class="[ text-2xl font-semibold tracking-tight ]">Audit Trail</h2>
 
-                <div v-for="audit in audits" :key="audit.id">
-                    <template v-if="audit.event === 'created'">
-                        <div class="[ flex items-center gap-2 ]">
-                            <div>Added by {{ audit.user.name }}</div>
-                            <div class="[ text-sm text-muted-foreground ]">{{ audit.created_at.short }}</div>
-                        </div>
-                    </template>
-
-                    <template v-if="audit.event === 'updated'">
-                        <div>
+                <div class="[ grid gap-4 mt-6 ]">
+                    <div v-for="audit in audits" :key="audit.id">
+                        <template v-if="audit.event === 'created'">
                             <div class="[ flex items-center gap-2 ]">
-                                <div>Updated by {{ audit.user.name }}</div>
+                                <div class="[ h-2 w-2 bg-muted-foreground rounded-full ]"></div>
+                                <div>Added by {{ audit.user.name }}</div>
                                 <div class="[ text-sm text-muted-foreground ]">{{ audit.created_at.short }}</div>
                             </div>
+                        </template>
 
-                            <div class="[ ps-4 ]">
-                                <div v-for="([attribute, changes], index) in Object.entries(audit.changes)" :key="index" class="[ flex items-center ]">
-                                    <div class="[ w-12 capitalize font-medium ]">
-                                        {{ attribute }}
-                                    </div>
+                        <template v-if="audit.event === 'updated'">
+                            <div>
+                                <div class="[ flex items-center gap-2 ]">
+                                    <div class="[ h-2 w-2 bg-muted-foreground rounded-full ]"></div>
+                                    <div>Updated by {{ audit.user.name }}</div>
+                                    <div class="[ text-sm text-muted-foreground ]">{{ audit.created_at.short }}</div>
+                                </div>
 
-                                    <div>
-                                        was changed <span class="[ text-muted-foreground ]">{{ changes.before }}</span> to <span class="[ font-medium ]">{{ changes.after }}</span>
+                                <div class="[ ps-8 text-sm mt-2 ]">
+                                    <div v-for="([attribute, changes], index) in Object.entries(audit.changes)" :key="index" class="[ flex items-center ]">
+                                        <div class="[ capitalize font-medium me-[0.5ch] ]">
+                                            {{ attribute }}
+                                        </div>
+
+                                        <div>
+                                            was changed <span class="[ underline font-medium ]">{{ changes.before }}</span> to <span class="[ underline font-medium ]">{{ changes.after }}</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </template>
+                        </template>
+                    </div>
                 </div>
             </section>
         </ContentContainer>
