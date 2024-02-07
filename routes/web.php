@@ -23,8 +23,8 @@ Route::middleware('guest')->group(function () {
     Route::post('signin', [SigninController::class, 'store'])->name('signin.store');
 });
 
-Route::delete('signout', [SigninController::class, 'destroy'])->name('signin.destroy');
-
 Route::middleware(['auth'])->group(function () {
+    Route::delete('signout', [SigninController::class, 'destroy'])->name('signin.destroy');
+
     Route::resource('ip-addresses', IpAddressesController::class)->except('destroy');
 });
