@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
+use OwenIt\Auditing\Models\Audit;
 
 class SigninController
 {
@@ -36,6 +37,19 @@ class SigninController
         }
 
         Auth::login($user);
+
+        Audit::create([
+            'user_type' => 'user',
+            'user_id'   => $user->id,
+            'event'     => 'login',
+            'auditable_type' => User::class,
+            'auditable_id'   => $user->id,
+            'old_values' => [],
+            'new_values' => [],
+            'ip_address' => $request->ip(),
+            'url' => $request->url(),
+            'user_agent' => $request->userAgent(),
+        ]);
 
         return redirect()->route('ip-addresses.index');
     }
