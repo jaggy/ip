@@ -45,5 +45,8 @@ class SigninController
 
     public function destroy()
     {
+        Auth::logout();
+
+        return redirect()->route('signin.create');
     }
 }
