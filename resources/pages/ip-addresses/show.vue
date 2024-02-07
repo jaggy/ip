@@ -23,8 +23,10 @@ defineProps<Props>()
                 </div>
             </header>
 
-            <section class="[ grid gap-4 ]">
-                <h2>Audit Trail</h2>
+            <div>IP Address: {{ ipAddress.ip_address }}</div>
+
+            <section class="[ grid gap-4 mt-12 ]">
+                <h2 class="[ text-2xl font-semibold tracking-tight ]">Audit Trail</h2>
 
                 <div v-for="audit in audits" :key="audit.id">
                     <template v-if="audit.event === 'created'">
