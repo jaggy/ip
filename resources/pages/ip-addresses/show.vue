@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Button } from "@/components/ui/button"
 import { ContentContainer } from "@/components/ui/content-container"
 import { Heading } from "@/components/ui/heading"
 import { Page } from "@/components/ui/page"
@@ -14,7 +15,13 @@ defineProps<Props>()
 <template>
     <Page>
         <ContentContainer>
-            <Heading>{{ ipAddress.label }}</Heading>
+            <header class="[ flex justify-between items-center ]">
+                <Heading>{{ ipAddress.label }}</Heading>
+
+                <div>
+                    <Button as="a" :href="ipAddress.links.edit_path"> Edit IP address </Button>
+                </div>
+            </header>
 
             <section class="[ grid gap-4 ]">
                 <h2>Audit Trail</h2>

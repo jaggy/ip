@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { useForm } from "@inertiajs/vue3"
 import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { ContentContainer } from "@/components/ui/content-container"
 import { CsrfField } from "@/components/ui/csrf-field"
 import { Field } from "@/components/ui/field"
-import { Heading } from "@/components/ui/heading"
 import { Input } from "@/components/ui/input"
 import { Page } from "@/components/ui/page"
 
@@ -31,27 +31,31 @@ function submit() {
 <template>
     <Page>
         <ContentContainer wrap="dialog">
-            <Heading> Add a new IP Address </Heading>
+            <Card>
+                <form :action="links.update_path" method="POST" @submit.prevent="submit">
+                    <CsrfField />
+                    <CardHeader>
+                        <CardTitle>Update IP address</CardTitle>
+                    </CardHeader>
+                    <CardContent class="[ grid gap-6 ]">
+                        <Field label="IP Address" id="ip-address">
+                            <template #hint>
+                                <p>The IP address cannot be changed</p>
+                            </template>
 
-            <form :action="links.update_path" method="POST" @submit.prevent="submit" class="[ grid gap-6 ]">
-                <CsrfField />
+                            <Input id="ip-address" name="ip_address" :default-value="ipAddress.ip_address" readonly />
+                        </Field>
 
-                <Field label="IP Address" id="ip-address">
-                    <template #hint>
-                        <p>The IP Address can't be changed</p>
-                    </template>
+                        <Field label="Label" id="label" :error="form.errors.label">
+                            <Input id="label" name="label" v-model="form.label" />
+                        </Field>
+                    </CardContent>
 
-                    <Input id="ip-address" name="ip_address" :model-value="ipAddress.ip_address" readonly class="[ bg-muted ]" />
-                </Field>
-
-                <Field label="Label" id="label" :error="form.errors.label">
-                    <Input id="label" name="label" v-model="form.label" />
-                </Field>
-
-                <div class="[ flex justify-end ]">
-                    <Button :disabled="form.processing"> Update IP address </Button>
-                </div>
-            </form>
+                    <CardFooter class="[ flex justify-end ]">
+                        <Button :disabled="form.processing">Update IP Address</Button>
+                    </CardFooter>
+                </form>
+            </Card>
         </ContentContainer>
     </Page>
 </template>
