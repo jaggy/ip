@@ -20,6 +20,7 @@ if (app()->environment('local')) {
 Route::get('/', LandingPageController::class);
 Route::get('signin', [SigninController::class, 'create'])->name('signin.create');
 Route::post('signin', [SigninController::class, 'store'])->name('signin.store');
+Route::delete('signout', [SigninController::class, 'destroy'])->name('signin.destroy');
 
 Route::middleware(['auth'])->group(function () {
     Route::resource('ip-addresses', IpAddressesController::class)->except('destroy');
