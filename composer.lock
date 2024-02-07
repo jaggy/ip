@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c05529efaaf8bdf41d95f20a464e601c",
+    "content-hash": "7eb9421b58d2b677c60a39dacf5e5d2f",
     "packages": [
         {
             "name": "brick/math",
@@ -6259,6 +6259,48 @@
                 "source": "https://github.com/hamcrest/hamcrest-php/tree/v2.0.1"
             },
             "time": "2020-07-09T08:09:16+00:00"
+        },
+        {
+            "name": "humans/inspect",
+            "version": "0.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/humans/inspect.git",
+                "reference": "a6882474fa5d3c5b439c0ad7f27fc8c7a2ec57d3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/humans/inspect/zipball/a6882474fa5d3c5b439c0ad7f27fc8c7a2ec57d3",
+                "reference": "a6882474fa5d3c5b439c0ad7f27fc8c7a2ec57d3",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "./helpers.php"
+                ],
+                "psr-4": {
+                    "Humans\\Inspect\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jaggy Gauran",
+                    "email": "jaggy@humans.ph"
+                }
+            ],
+            "support": {
+                "issues": "https://github.com/humans/inspect/issues",
+                "source": "https://github.com/humans/inspect/tree/0.3.0"
+            },
+            "time": "2022-07-11T09:56:00+00:00"
         },
         {
             "name": "jean85/pretty-package-versions",
