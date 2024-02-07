@@ -39,7 +39,7 @@ cp .env.example .env
 
 Update the `.env` file with your database config.
 
- 
+
 ### 2. Install the dependencies
 ```
 composer install
@@ -60,3 +60,14 @@ php artisan migrate --seed
 If you're using Valet or Herd, you can visit the project via [project-name].test.
 
 If you not, you can start your server by running `php artisan serve`.
+
+
+
+## Running Tests
+
+To run the test suite, make sure your `phpunit.xml` has the database configured properly.
+
+```
+php artisan test --parallel
+```
+
