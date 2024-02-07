@@ -26,7 +26,7 @@ class SigninController
     {
         if (! $user = User::where('email', $request->input('email'))->first()) {
             throw ValidationException::withMessages([
-                'email' => 'This email address does not exist.',
+                'email' => "This email address doesn't exist.",
             ]);
         }
 
