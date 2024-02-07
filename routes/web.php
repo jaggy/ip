@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\IpAddressesController;
-use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\SigninController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -17,7 +16,7 @@ if (app()->environment('local')) {
     });
 }
 
-Route::get('/', LandingPageController::class);
+Route::redirect('/', 'signin');
 Route::get('signin', [SigninController::class, 'create'])->name('signin.create');
 Route::post('signin', [SigninController::class, 'store'])->name('signin.store');
 Route::delete('signout', [SigninController::class, 'destroy'])->name('signin.destroy');
