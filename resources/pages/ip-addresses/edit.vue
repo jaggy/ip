@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useForm } from "@inertiajs/vue3"
+import AppLayout from "@/components/layouts/AppLayout.vue"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { ContentContainer } from "@/components/ui/content-container"
@@ -7,6 +8,10 @@ import { CsrfField } from "@/components/ui/csrf-field"
 import { Field } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import { Page } from "@/components/ui/page"
+
+defineOptions({
+    layout: AppLayout,
+})
 
 type Props = {
     links: Links

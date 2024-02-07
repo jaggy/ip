@@ -1,8 +1,13 @@
 <script setup lang="ts">
+import AppLayout from "@/components/layouts/AppLayout.vue"
 import { Button } from "@/components/ui/button"
 import { ContentContainer } from "@/components/ui/content-container"
 import { Heading } from "@/components/ui/heading"
 import { Page } from "@/components/ui/page"
+
+defineOptions({
+    layout: AppLayout,
+})
 
 type Props = {
     ipAddress: App.IpAddress

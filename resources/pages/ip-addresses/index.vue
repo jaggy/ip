@@ -1,10 +1,15 @@
 <script setup lang="ts">
+import AppLayout from "@/components/layouts/AppLayout.vue"
 import { Button } from "@/components/ui/button"
 import { ContentContainer } from "@/components/ui/content-container"
 import { Heading } from "@/components/ui/heading"
 import { Page } from "@/components/ui/page"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { inertia } from "@/utils"
+
+defineOptions({
+    layout: AppLayout,
+})
 
 type Props = {
     ipAddresses: App.IpAddress[]
