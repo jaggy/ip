@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\AuditResource;
 use App\Http\Resources\IpAddressResource;
 use App\Models\IpAddress;
 use Illuminate\Http\Request;
@@ -24,6 +25,9 @@ class IpAddressesController
     {
         return inertia('ip-addresses/show', [
             'ipAddress' => IpAddressResource::make($ipAddress),
+            'audits' => AuditResource::collection(
+                $ipAddress->audits()->latest()->get(),
+            ),
         ]);
     }
 
